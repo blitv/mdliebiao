@@ -1,32 +1,61 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xhs</title>
+    <title>Query App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #app {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>正在跳转...</h1>
+    <div id="app">
+        <input type="text" id="queryInput" placeholder="Enter your query">
+        <button id="queryButton">Query</button>
+        <div id="response"></div>
+    </div>
+
     <script>
-        // 设置Cookie
-        document.cookie = "abRequestId=a7489e55-3f8c-5b48-bcfc-cd2acebf8b93; a1=18a787f94d16saj28xoz0hp97irbg58a71534hutt50000275386; webId=039f65e0420d4ab06f98131cbb33e32a; gid=yY0WYWij0dWqyY0WYWij4yx7fyKM0VJYClu8299xUjW3Fq28Dk2Y04888JW2qYK82Y4d22i2; customerClientId=353130374560580; x-user-id-school.xiaohongshu.com=6645b6fde300000000000001; customer-sso-sid=68c517370578975715456898ef52142475f5a9c7; x-user-id-ark.xiaohongshu.com=655c6e2e000000000800208a; access-token-ark.xiaohongshu.com=customer.ark.AT-68c517370578980010424198dwzql6bdvnckjvpn; access-token-ark.beta.xiaohongshu.com=customer.ark.AT-68c517370578980010424198dwzql6bdvnckjvpn; xsecappid=xhs-pc-web; timestamp2=17161918151861539d58d74063317b27a7a8445bc7efd88b442e3f8c2bce131; timestamp2.sig=_vR9e4tTSeOjp9nQ324DNzO5DWbd4mSz2PHRZ9q9tiw; web_session=040069b5d62080fee86ad1346c344b4c5b73a1; webBuild=4.18.0; unread={%22ub%22:%22665af9150000000005007bfb%22%2C%22ue%22:%22665ae5c80000000005007a1e%22%2C%22uc%22:26}; acw_tc=02b1eba9704c44cb706526622823b9f595eb745d84cd3c5e9c17e66bd87d2e76; websectiga=cf46039d1971c7b9a650d87269f31ac8fe3bf71d61ebf9d9a0a87efb414b816c; sec_poison_id=0ab60935-4211-4d9e-8c2a-ae459b3b2f49";
+        document.getElementById('queryButton').addEventListener('click', function() {
+            const query = document.getElementById('queryInput').value;
 
-        // 目标跳转URL
-        const targetURL = "https://www.xiaohongshu.com/explore/6657d01b0000000015012cb5";
-
-        // 创建表单并提交，以携带Cookie
-        function redirectWithCookie(url) {
-            const form = document.createElement('form');
-            form.method = 'GET';
-            form.action = url;
-            
-            // 将表单添加到body并提交
-            document.body.appendChild(form);
-            form.submit();
-        }
-
-        // 设置Cookie后进行跳转
-        redirectWithCookie(targetURL);
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('response').innerText = 'Error: ' + error;
+            });
+        });
     </script>
 </body>
 </html>
