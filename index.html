@@ -63,7 +63,7 @@
             .then(response => response.json()) // 将响应转换为JSON
             .then(data => {
                 // 将响应中的data数据显示在页面上
-                document.getElementById('response').innerText = 'Response data: ' + data.data;
+                document.getElementById('response').innerText = '现在点赞数为: ' + data.data;
             })
             .catch(error => {
                 // 如果请求失败，显示错误信息
