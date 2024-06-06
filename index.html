@@ -58,7 +58,7 @@
                 headers: {
                     'Content-Type': 'application/json' // 请求头，指定内容类型为JSON
                 },
-                body: JSON.stringify({ query: query }) // 请求体，包含查询内容
+                body: JSON.stringify({ u: query }) // 请求体，包含查询内容
             })
             .then(response => response.json()) // 将响应转换为JSON
             .then(data => {
