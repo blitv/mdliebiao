@@ -1,75 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Query App</title>
-    <!-- 添加一些基本的样式 -->
+    <title>跳转小红书App示例</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #app {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        input, button {
-            padding: 10px;
-            margin: 5px;
-            font-size: 16px;
+            text-align: center;
+            margin-top: 50px;
         }
         button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #FF2442;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-        }
-        #response {
-            margin-top: 20px;
-            white-space: pre-wrap;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <!-- 主应用容器 -->
-    <div id="app">
-        <!-- 查询输入框 -->
-        <input type="text" id="u" placeholder="输入">
-        <!-- 查询按钮 -->
-        <button id="queryButton">查询</button>
-        <!-- 用于显示响应的容器 -->
-        <div id="response"></div>
-    </div>
-
-    <script>
-        // 为查询按钮添加点击事件监听器
-        document.getElementById('queryButton').addEventListener('click', function() {
-            // 获取输入框中的查询内容
-            const query = document.getElementById('u').value;
-
-            // 使用 Fetch API 发送 POST 请求
-            fetch('http://175.178.122.45:8080/xhs/getZan', { // 示例API地址，请根据实际情况替换
-                method: 'POST', // 请求方法
-                headers: {
-                    'Content-Type': 'application/json' // 请求头，指定内容类型为JSON
-                },
-                body: JSON.stringify({ u: query }) // 请求体，包含查询内容
-            })
-            .then(response => response.json()) // 将响应转换为JSON
-            .then(data => {
-                // 将响应中的data数据显示在页面上
-                document.getElementById('response').innerText = '现在点赞数为: ' + data.data;
-            })
-            .catch(error => {
-                // 如果请求失败，显示错误信息
-                document.getElementById('response').innerText = 'Error: ' + error;
-            });
-        });
-    </script>
+    <h1>跳转小红书App示例</h1>
+    <button onclick="window.location.href='https://www.xiaohongshu.com/user/profile/56573c3782ec39401a174101'">跳转到小红书首页</button>
+    <button onclick="window.location.href='https://www.xiaohongshu.com/user/profile/583f69d982ec39445cbd9613'">跳转到小红书个人页</button>
 </body>
 </html>
