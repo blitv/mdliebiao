@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>跳转小红书App示例</title>
+    <title>点赞所有链接</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,36 +27,7 @@
 </head>
 <body>
     <h1>跳转小红书App示例</h1>
-    <button id="homepageButton">跳转到小红书首页</button>
-    <button id="profileButton">跳转到小红书个人页</button>
-
-    <script>
-        function openApp(url, fallbackUrl) {
-            var timeout, t = 1000, hasApp = true;
-            var openScript = setTimeout(function () {
-                if (!hasApp) {
-                    window.location = fallbackUrl;
-                }
-            }, 2000);
-
-            var frame = document.createElement('iframe');
-            frame.src = url;
-            frame.style.border = 'none';
-            frame.style.width = '0px';
-            frame.style.height = '0px';
-            document.body.appendChild(frame);
-            timeout = setTimeout(function () {
-                hasApp = false;
-            }, t);
-        }
-
-        document.getElementById('homepageButton').addEventListener('click', function() {
-            openApp('xhsdiscover://homepage', 'https://www.xiaohongshu.com/user/profile/5ceaacc6000000001700d78b');
-        });
-
-        document.getElementById('profileButton').addEventListener('click', function() {
-            openApp('xhsdiscover://profile', 'https://www.xiaohongshu.com/user/profile/5ceaacc6000000001700d78b');
-        });
-    </script>
+    <button onclick="window.location.href='https://www.xiaohongshu.com/explore/667529f3000000001f006fd2'">点击打开链接1 点赞</button>
+    <button onclick="window.location.href='https://www.xiaohongshu.com/explore/662db3700000000003020dad'">点击打开链接2 点赞</button>
 </body>
 </html>
